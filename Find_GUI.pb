@@ -1,4 +1,4 @@
-; план
+﻿; план
 ; 1. Если нет возможности создать ini и соответственно прочитать, то не задаются состояние элементов по умолчанию
 ; 2. Сейчас Wildcard применяется к имени -name, надо ещё добавить более редкий случай к пути -path -ipath
 ; 3. Запуск справки своей
@@ -27,7 +27,7 @@ If ExamineEnvironmentVariables()
 EndIf
 ; Debug UserIntLang$
 
-#CountStrLang = 116 ; число строк перевода и соответсвенно массива
+#CountStrLang = 117 ; число строк перевода и соответсвенно массива
 
 Global Dim Lng.s(#CountStrLang)
 Lng(1) = "days"
@@ -146,6 +146,7 @@ Lng(113) = "Not specified the path"
 Lng(114) = "Not specified search data"
 Lng(115) = "Turn off the sorting"
 Lng(116) = "Turn off the formatted output"
+Lng(117) = "Select the type of search object: Files"
 
 PathLang$ ="/usr/share/locale/" + UserIntLang$ + "/LC_MESSAGES/Find_GUI.txt"
 
@@ -2071,6 +2072,9 @@ Procedure.s FormComStr()
 		If GetGadgetState(#ChPrintf) = #PB_Checkbox_Checked
 			err$ + Lng(116) + #LF$
 		EndIf
+		If GetGadgetState(#OptType2) = #PB_Checkbox_Unchecked
+			err$ + Lng(117) + #LF$
+		EndIf
 		If GetGadgetState(#OptGrep) = #PB_Checkbox_Checked
 			If GetGadgetState(#ChERE) = #PB_Checkbox_Checked
 				ComStr$ + "e"
@@ -2210,3 +2214,10 @@ Procedure ForceDirectories(Dir.s)
 		ProcedureReturn CreateDirectory(Dir)
 	EndIf
 EndProcedure
+; IDE Options = PureBasic 6.04 LTS (Linux - x86)
+; CursorPosition = 148
+; FirstLine = 140
+; Folding = Jk5
+; EnableXP
+; Executable = Find_GUI-хубунту En
+; Compiler = PureBasic 6.04 LTS - C Backend (Linux - x86)
